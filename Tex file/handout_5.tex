@@ -26,131 +26,131 @@
 \definecolor{gray}{cmyk}{0.06,0,0,0.34}
 
 \begin{document}
-
-
-% First, move up from the normal starting point on the page by 20 millimeters so the table appears in the top margins
-\vspace*{-20mm}
-
-% Here's the actual table. We start with a `tabular' environment with 3 columns. The column alignments are left, center, and right, respectively, so the command option is {lcr}. Within the table, columns are delimited by & and rows by \\
-% Note that LaTeX ignore consecutive spaces, including tabs, so you can use tabs to make your table look reasonable here.
-\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcr}
-Econ 8714     & \hfill    &         Professor: P.J. Healy          \\
-Microeconomic Theory 2B  &           &   TA: Han Wang    
-\end{tabular*}
-
-% Finally, let's put a big `title' in the center of the page, after we `skip' down a bit of space.
-\bigskip
-\begin{center}
-{\Large 04/21/2023 Recitation \#5 Handout}
-\end{center}
-
-% Skip some more space and then start working
-\bigskip
-
-
-\textbf{1. Revelation Principle}
-
-\begin{proposition}
-If $\exists \Gamma$ that implements $f$ in BNE, then $\hat{\Gamma}=(\Theta,f)$ truthfully implements $f$ in BNE.
-\end{proposition}
-
-\begin{proof}[Proof of Proposition 1] (Using notation for finite $\Theta_i$.) By assumption, there is a Bayesian equilibrium $s^*$ of $\Gamma$ such that $g\left(s^*(\theta)\right)=f(\theta)$ for all $\theta \in \Theta$.
-
-Suppose agent $i$ is of type $\theta_i$. Under $\Gamma$, if her opponents play $s_{-i}^*$, it is optimal for agent $i$ to play $s_i^*\left(\theta_i\right)$. That is,
-$$
-\sum_{\theta_{-i}} \mu\left(\theta_{-i} \mid \theta_i\right) u_i(\underbrace{g\left(s_i^*\left(\theta_i\right), s_{-i}^*\left(\theta_{-i}\right)\right)}_{f(\theta)}, \theta) \geq \sum_{\theta_{-i}} \mu\left(\theta_{-i} \mid \theta_i\right) u_i(\underbrace{g\left(\hat{s}_i, s_{-i}^*\left(\theta_{-i}\right)\right)}_{\text {some } x \in X}, \theta) \text { for all } \hat{s}_i \in S_i .
-$$
-In particular this is true when $\hat{s}_i=s_i^*\left(\hat{\theta}_i\right)$ for some $\hat{\theta}_i \in \Theta_i$, so that $g\left(s_i^*\left(\hat{\theta}_i\right), s_{-i}^*\left(\theta_{-i}\right)\right)=$ $f\left(\hat{\theta}_i, \theta_{-i}\right)$. 
-
-Substituting into the previous expression thus yields
-$$\quad \sum_{\theta_{-i}} \mu\left(\theta_{-i} \mid \theta_i\right) u_i\left(f\left(\theta_i, \theta_{-i}\right), \theta\right) \geq \sum_{\theta_{-i}} \mu\left(\theta_{-i} \mid \theta_i\right) u_i\left(f\left(\hat{\theta}_i, \theta_{-i}\right), \theta\right)\text { for all } \hat{\theta}_i \in \Theta_i.$$ 
-
-This says that it is optimal for $i$ to be truthful in $\hat{\Gamma}$ when others are truthful, or in other words, that $f$ is Bayesian incentive compatible.
-\end{proof}
-
-\begin{proposition}
-If $\exists \Gamma$ that implements $f$ in DSE, then $\hat{\Gamma}=(\Theta,f)$ truthfully implements $f$ in DSE.
-\end{proposition}
-
-\begin{proof}[Sketch of the Proof of Proposition 2] By assumption, there is a dominant strategy equilibrium $s^*$ of $\Gamma$ such that $g\left(s^*(\theta)\right)=f(\theta)$ for all $\theta \in \Theta$.
-
-Suppose agent $i$ is of type $\theta_i$. Under $\Gamma$, if her opponents play $s_{-i}^*$, it is optimal for agent $i$ to play $s_i^*\left(\theta_i\right)$. That is,
-$$
-u_i(g\left(s_i^*\left(\theta_i\right), s_{-i}\right), \theta) \geq u_i(g\left(\hat{s}_i, s_{-i}\right), \theta) \text { for all } \hat{s}_i \in S_i .
-$$
-
-In particular this is true when $\hat{s}_i=s_i^*\left(\hat{\theta}_i\right)$ for some $\hat{\theta}_i \in \Theta_i$ and $\hat{s}_{-i}=s_{-i}^*\left(\hat{\theta}_{-i}\right)$ for some $\hat{\theta}_{-i} \in \Theta_{-i}$. 
-\end{proof}
-
-\begin{remark}
-\hfill
-\begin{enumerate}
-    \item In a direct mechanism, elements of $\Theta$ have two interpretations: as profiles of types and profiles of type reports. For example, when asking whether allocation $x(\theta)$ is efficient, we think of $\theta$ as a profile of types. But when asking whether agent $i$ has an incentive to report truthfully, we think of $\theta_i \in \Theta_i$ as $i$'s actual type and $\hat{\theta}_i \in \Theta_i$ as $i$'s type announcement. 
-    \item The revelation principle shows that for the purpose of determining which social choice functions are implementable, direct mechanisms are enough.
-    \item There are many reasons for considering more general mechanisms: (1) to rule out bad equilibria; (2) to be easier applied in practice (e.g., biding in auctions). 
-\end{enumerate}
-\end{remark}
-
-
-\textbf{2. Dominant Strategy Incentive Compatible (DSIC)}
-
-\begin{theorem}[Gibbard-Satterthwaite Theorem]
-Suppose that $X$ is finite with $|X|\ge 3$ and the type space include all possible weak (or strict) orderings on $X$. A social choice function $f$ with $f(\Theta)=X$ is DSIC if and only if it is dictatorial.
-\end{theorem}
-
-\begin{proof}[Proof of the theorem in the case of $\mathcal{P}$, $N=2$ and $X=\{a,b,c\}$.]
-    The type space will be: $\Theta=\Theta_1 \times \Theta_2=\{a b c, c a b, b a c, b c a, c a b, c b a\} \times\{a b c, c a b, b a c, b c a, c a b, c b a\}$. By assumption $f(\Theta)=\{a, b, c\}$. 
-    
-    ($\implies$) Here, we will prove by construction that if $f$ is DSIC, then it is dictatorial. In the following table we assign a social alternative for every type profile:
-\begin{table}[http]
-    \centering
-    \begin{tabular}{l|l|l|l|l|l|l}
-\hline & abc & acb & bac & bca & cab & cba \\
-\hline abc & & & & & & \\
-\hline acb & & & & & & \\
-\hline bac & & & & & & \\
-\hline bca & & & & & & \\
-\hline cab & & & & & & \\
-\hline cba & & & & & & \\
-\hline
-\end{tabular}
-\end{table}
-
-The rows denote the type of agent 1 and the columns denote the type of agent 2. First, notice that in order for $f$ to be DSIC, it must be that whenever both players agree on their top alternative, it assigns that alternative as the outcome. If not, then both players can agree to misreport in such a way that they get their top alternative. Then, $f(a b c, a b c)=f(a b c, a c b)=f(a c b, a b c)=f(a c b, a c b)=a, f(b a c, b a c)=f(b a c, b c a)=f(b c a, b a c)=f(b c a, b c a)=$ $b, f(c a b, c a b)=f(c a b, c b a)=f(c b a, c a b)=f(c b a, c b a)=c$
-
-Second, let us consider $f(a b c, b c a)$. Notice that $f(a b c, b c a) \neq c$; otherwise, agent $1$ has an incentive to misreport as bac and get $b$ instead of $c$. So, $f(a b c, b c a) \in\{a, b\}$. For the rest of this analysis, let $f(a b c, b c a)=a$ and we will show that agent 1 is the dictator in this case. The case $f(a b c, b c a)=b$ ensures that agent 2 is the dictator, by a very similar argument.
-
-If $f(a b c, b c a)=a$, then $f(a b c, b a c)=a$ (by the IC for agent 2) and $f(a c b, b a c)=f(a c b, b c a)=a$ (by the IC for agent 1). The IC for agent 2 ensures also that $f(a b c, c a b)=f(a b c, c b a)=f(a c b, c a b)=f(a c b, c b a)=a$. So far, the table should look like:
-
-\begin{table}[http]
-    \centering
-    \begin{tabular}{l|l|l|l|l|l|l}
-\hline & abc & acb & bac & bca & cab & cba \\
-\hline abc &a & a&a &a & a& a\\
-\hline acb & a& a& a&a &a & a\\
-\hline bac & & & b&b & & \\
-\hline bca & & & b& b& & \\
-\hline cab & & & & &c &c \\
-\hline cba & & & & &c &c \\
-\hline
-\end{tabular}
-\end{table}
-Repeating the process by starting from $f(bac,cba)$ and $f(cab,bca)$, we can show that $f$ is dictatorial (agent 1 is the dictator). 
-\end{proof}
-
-Gibbard-Satterthewaite Theorem tells us DSIC is strong. One way to break this impossibility result is by putting some domain restrictions. In the next section, we talk about different mechanisms under quasi-linear setting to implement the Pareto optimal (P.O.) level of public good. 
-
-\textbf{3. Application: Solutions to Public Goods Problem}  
-
-\begin{enumerate}
-    \item Groves mechanism: DSIC + P.O. $y$, not budget balanced\\
-    Note: By Green \& Laffont, DSIC + P.O. $y$ $\implies$ Groves mechanism.
-    \item VCG mechanism: DSIC + P.O. $y$, budget feasible
-    \item AGV mechanism: BIC + P.O. $y$ + budget balanced 
-    \item Groves \& Ledyard (indirect) mechanism: NE + P.O. $y$ + budget balanced
-    \item Walker (indirect) mechanism: NE + P.O. $y$ + budget balanced + individually rational\\
-    Note: By Hurwitz, Nash implementable + P.O. + individually rational $\implies$ Lindahl.
-\end{enumerate}
-
-
+	
+	
+	% First, move up from the normal starting point on the page by 20 millimeters so the table appears in the top margins
+	\vspace*{-20mm}
+	
+	% Here's the actual table. We start with a `tabular' environment with 3 columns. The column alignments are left, center, and right, respectively, so the command option is {lcr}. Within the table, columns are delimited by & and rows by \\
+	% Note that LaTeX ignore consecutive spaces, including tabs, so you can use tabs to make your table look reasonable here.
+	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcr}
+		Econ 8714     & \hfill    &         Professor: P.J. Healy          \\
+		Microeconomic Theory 2B  &           &   TA: Han Wang    
+	\end{tabular*}
+	
+	% Finally, let's put a big `title' in the center of the page, after we `skip' down a bit of space.
+	\bigskip
+	\begin{center}
+		{\Large 04/21/2023 Recitation \#5 Handout}
+	\end{center}
+	
+	% Skip some more space and then start working
+	\bigskip
+	
+	
+	\textbf{1. Revelation Principle}
+	
+	\begin{proposition}
+		If $\exists \Gamma$ that implements $f$ in BNE, then $\hat{\Gamma}=(\Theta,f)$ truthfully implements $f$ in BNE.
+	\end{proposition}
+	
+	\begin{proof}[Proof of Proposition 1] (Using notation for finite $\Theta_i$.) By assumption, there is a Bayesian equilibrium $s^*$ of $\Gamma$ such that $g\left(s^*(\theta)\right)=f(\theta)$ for all $\theta \in \Theta$.
+		
+		Suppose agent $i$ is of type $\theta_i$. Under $\Gamma$, if her opponents play $s_{-i}^*$, it is optimal for agent $i$ to play $s_i^*\left(\theta_i\right)$. That is,
+		$$
+		\sum_{\theta_{-i}} \mu\left(\theta_{-i} \mid \theta_i\right) u_i(\underbrace{g\left(s_i^*\left(\theta_i\right), s_{-i}^*\left(\theta_{-i}\right)\right)}_{f(\theta)}, \theta) \geq \sum_{\theta_{-i}} \mu\left(\theta_{-i} \mid \theta_i\right) u_i(\underbrace{g\left(\hat{s}_i, s_{-i}^*\left(\theta_{-i}\right)\right)}_{\text {some } x \in X}, \theta) \text { for all } \hat{s}_i \in S_i .
+		$$
+		In particular this is true when $\hat{s}_i=s_i^*\left(\hat{\theta}_i\right)$ for some $\hat{\theta}_i \in \Theta_i$, so that $g\left(s_i^*\left(\hat{\theta}_i\right), s_{-i}^*\left(\theta_{-i}\right)\right)=$ $f\left(\hat{\theta}_i, \theta_{-i}\right)$. 
+		
+		Substituting into the previous expression thus yields
+		$$\quad \sum_{\theta_{-i}} \mu\left(\theta_{-i} \mid \theta_i\right) u_i\left(f\left(\theta_i, \theta_{-i}\right), \theta\right) \geq \sum_{\theta_{-i}} \mu\left(\theta_{-i} \mid \theta_i\right) u_i\left(f\left(\hat{\theta}_i, \theta_{-i}\right), \theta\right)\text { for all } \hat{\theta}_i \in \Theta_i.$$ 
+		
+		This says that it is optimal for $i$ to be truthful in $\hat{\Gamma}$ when others are truthful, or in other words, that $f$ is Bayesian incentive compatible.
+	\end{proof}
+	
+	\begin{proposition}
+		If $\exists \Gamma$ that implements $f$ in DSE, then $\hat{\Gamma}=(\Theta,f)$ truthfully implements $f$ in DSE.
+	\end{proposition}
+	
+	\begin{proof}[Sketch of the Proof of Proposition 2] By assumption, there is a dominant strategy equilibrium $s^*$ of $\Gamma$ such that $g\left(s^*(\theta)\right)=f(\theta)$ for all $\theta \in \Theta$.
+		
+		Suppose agent $i$ is of type $\theta_i$. Under $\Gamma$, no matter how her opponents play, it is optimal for agent $i$ to play $s_i^*\left(\theta_i\right)$. That is,
+		$$
+		u_i(g\left(s_i^*\left(\theta_i\right), s_{-i}\right), \theta) \geq u_i(g\left(\hat{s}_i, s_{-i}\right), \theta) \text { for all } \hat{s}_i \in S_i \text{ and } s_{-i}\in S_{-i}.
+		$$
+		
+		In particular this is true when $\hat{s}_i=s_i^*\left(\hat{\theta}_i\right)$ for some $\hat{\theta}_i \in \Theta_i$ and $s_{-i}=s_{-i}^*\left(\hat{\theta}_{-i}\right)$ for some $\hat{\theta}_{-i} \in \Theta_{-i}$. 
+	\end{proof}
+	
+	\begin{remark}
+		\hfill
+		\begin{enumerate}
+			\item In a direct mechanism, elements of $\Theta$ have two interpretations: as profiles of types and profiles of type reports. For example, when asking whether allocation $x(\theta)$ is efficient, we think of $\theta$ as a profile of types. But when asking whether agent $i$ has an incentive to report truthfully, we think of $\theta_i \in \Theta_i$ as $i$'s actual type and $\hat{\theta}_i \in \Theta_i$ as $i$'s type announcement. 
+			\item The revelation principle shows that for the purpose of determining which social choice functions are implementable, direct mechanisms are enough.
+			\item There are many reasons for considering more general mechanisms: (1) to rule out bad equilibria; (2) to be easier applied in practice (e.g., biding in auctions). 
+		\end{enumerate}
+	\end{remark}
+	
+	
+	\textbf{2. Dominant Strategy Incentive Compatible (DSIC)}
+	
+	\begin{theorem}[Gibbard-Satterthwaite Theorem]
+		Suppose that $X$ is finite with $|X|\ge 3$ and the type space include all possible weak (or strict) orderings on $X$. A social choice function $f$ with $f(\Theta)=X$ is DSIC if and only if it is dictatorial.
+	\end{theorem}
+	
+	\begin{proof}[Proof of the theorem in the case of $\mathcal{P}$, $N=2$ and $X=\{a,b,c\}$.]
+		The type space will be: $\Theta=\Theta_1 \times \Theta_2=\{a b c, c a b, b a c, b c a, c a b, c b a\} \times\{a b c, c a b, b a c, b c a, c a b, c b a\}$. By assumption $f(\Theta)=\{a, b, c\}$. 
+		
+		($\implies$) Here, we will prove by construction that if $f$ is DSIC, then it is dictatorial. In the following table we assign a social alternative for every type profile:
+		\begin{table}[http]
+			\centering
+			\begin{tabular}{l|l|l|l|l|l|l}
+				\hline & abc & acb & bac & bca & cab & cba \\
+				\hline abc & & & & & & \\
+				\hline acb & & & & & & \\
+				\hline bac & & & & & & \\
+				\hline bca & & & & & & \\
+				\hline cab & & & & & & \\
+				\hline cba & & & & & & \\
+				\hline
+			\end{tabular}
+		\end{table}
+		
+		The rows denote the type of agent 1 and the columns denote the type of agent 2. First, notice that in order for $f$ to be DSIC, it must be that whenever both players agree on their top alternative, it assigns that alternative as the outcome. If not, then both players can agree to misreport in such a way that they get their top alternative. Then, $f(a b c, a b c)=f(a b c, a c b)=f(a c b, a b c)=f(a c b, a c b)=a, f(b a c, b a c)=f(b a c, b c a)=f(b c a, b a c)=f(b c a, b c a)=$ $b, f(c a b, c a b)=f(c a b, c b a)=f(c b a, c a b)=f(c b a, c b a)=c$
+		
+		Second, let us consider $f(a b c, b c a)$. Notice that $f(a b c, b c a) \neq c$; otherwise, agent $1$ has an incentive to misreport as bac and get $b$ instead of $c$. So, $f(a b c, b c a) \in\{a, b\}$. For the rest of this analysis, let $f(a b c, b c a)=a$ and we will show that agent 1 is the dictator in this case. The case $f(a b c, b c a)=b$ ensures that agent 2 is the dictator, by a very similar argument.
+		
+		If $f(a b c, b c a)=a$, then $f(a b c, b a c)=a$ (by the IC for agent 2) and $f(a c b, b a c)=f(a c b, b c a)=a$ (by the IC for agent 1). The IC for agent 2 ensures also that $f(a b c, c a b)=f(a b c, c b a)=f(a c b, c a b)=f(a c b, c b a)=a$. So far, the table should look like:
+		
+		\begin{table}[http]
+			\centering
+			\begin{tabular}{l|l|l|l|l|l|l}
+				\hline & abc & acb & bac & bca & cab & cba \\
+				\hline abc &a & a&a &a & a& a\\
+				\hline acb & a& a& a&a &a & a\\
+				\hline bac & & & b&b & & \\
+				\hline bca & & & b& b& & \\
+				\hline cab & & & & &c &c \\
+				\hline cba & & & & &c &c \\
+				\hline
+			\end{tabular}
+		\end{table}
+		Repeating the process by starting from $f(bac,cba)$ and $f(cab,bca)$, we can show that $f$ is dictatorial (agent 1 is the dictator). 
+	\end{proof}
+	
+	Gibbard-Satterthewaite Theorem tells us DSIC is strong. One way to break this impossibility result is by putting some domain restrictions. In the next section, we talk about different mechanisms under quasi-linear setting to implement the Pareto optimal (P.O.) level of public good. 
+	
+	\textbf{3. Application: Solutions to Public Goods Problem}  
+	
+	\begin{enumerate}
+		\item Groves mechanism: DSIC + P.O. $y$, not budget balanced\\
+		Note: By Green \& Laffont, DSIC + P.O. $y$ $\implies$ Groves mechanism.
+		\item VCG mechanism: DSIC + P.O. $y$, budget feasible
+		\item AGV mechanism: BIC + P.O. $y$ + budget balanced 
+		\item Groves \& Ledyard (indirect) mechanism: NE + P.O. $y$ + budget balanced
+		\item Walker (indirect) mechanism: NE + P.O. $y$ + budget balanced + individually rational\\
+		Note: By Hurwitz, Nash implementable + P.O. + individually rational $\implies$ Lindahl.
+	\end{enumerate}
+	
+	
 \end{document} 
