@@ -1,0 +1,150 @@
+% This sample document was created by P.J. Healy (healy.52@osu.edu) for educational purposes. You may use this as a template for your own documents as you wish.
+
+% Lines that start with a percent sign are just comments - they won't be processed or show up in the final output. If you actually want a percent sign to show up, use \% instead, like ``I got 100\%!''
+
+% \documentclass says what type of document we're making and gives some basic options (options appear in square brackets. Here, our document is like an article (as opposed to a book, report, PhD thesis, etc.), we want 11-point font, and equation numbers on the left (leqno).
+\documentclass[11pt,leqno]{article}
+
+% These are the following packages we want LaTeX to load, since we might use them. I group them by similarity.
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{color,graphicx}
+\usepackage{fullpage,setspace}
+\usepackage[colorlinks=true,urlcolor=darkgray,bookmarks=false]{hyperref}
+
+% First we tell LaTeX that we want to create a numbered "theorem-like" environment whose label is "Theorem X" and whose numbering will be handled by an internal counter named "theorem".
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+% The 'length variable' \parindent says how far to indent each paragraph. I want to set that length variable to zero:
+\setlength{\parindent}{0mm}
+
+% At OSU, you might use scarlet and gray colors for things, so here they are. Note: this requires the color package to be loaded. If you don't use this (and I don't below), you might as well comment it out or delete it.
+\definecolor{scarlet}{cmyk}{0,1.00,0.65,0.15}
+\definecolor{gray}{cmyk}{0.06,0,0,0.34}
+
+\begin{document}
+
+
+% First, move up from the normal starting point on the page by 20 millimeters so the table appears in the top margins
+\vspace*{-20mm}
+
+% Here's the actual table. We start with a `tabular' environment with 3 columns. The column alignments are left, center, and right, respectively, so the command option is {lcr}. Within the table, columns are delimited by & and rows by \\
+% Note that LaTeX ignore consecutive spaces, including tabs, so you can use tabs to make your table look reasonable here.
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcr}
+Econ 8714     & \hfill    &         Professor: P.J. Healy          \\
+Microeconomic Theory 2B  &           &   TA: Han Wang    
+\end{tabular*}
+
+% Finally, let's put a big `title' in the center of the page, after we `skip' down a bit of space.
+\bigskip
+\begin{center}
+{\Large 04/14/2023 Recitation \#4 Handout}
+\end{center}
+
+% Skip some more space and then start working
+\bigskip
+
+
+\textbf{1. Definitions}
+\begin{itemize}
+    \item Agent's utility: $u(x,t|\theta)$
+    \item MRS: $\frac{\partial u/\partial x}{\partial u/\partial t}$ ($du=\partial u/\partial x d x +\partial u/\partial t d t=0$ implies $dt/dx =-MRS$.) 
+    \item $SC_{+}$: $\frac{\partial}{\partial \theta}MRS> 0$, $\forall x,t, \theta$ (clockwise rotation); $SC_{-}$: $\frac{\partial}{\partial \theta}MRS< 0$, $\forall x,t, \theta$
+    \item SCF $f$ is implementable if there's a $\Gamma=(S,g)$ that implements $f$, i.e., $f(\theta) \in g(\mu_{\Gamma}(\theta))$, $\forall \theta$.
+    \item SCF $f$ is IC if truth-telling is an equilibrium of $\Gamma_{f}=(\Theta,f)$, i.e., $\theta \in \mu_{\Gamma_{f}}(\theta)$, $\forall \theta$.
+\end{itemize}
+
+
+\textbf{2. Characterization of IC}
+
+If revelation principle holds, then $f$ is implementable $\iff$ $f$ is IC. Thus, we can restrict attention to direct mechanisms.
+
+\begin{theorem}
+If $f(\theta)=\left(x(\theta),t(\theta)\right)$ is IC, then 
+\begin{enumerate}
+    \item $\left[\frac{\partial}{\partial \theta}(\frac{\partial u/\partial x}{\partial u/\partial t})\right]\cdot \frac{d x}{d \theta}\geq 0$, $\forall \theta$\\
+    \item $\frac{d t}{d \theta}=-\left(\frac{\partial u/\partial x}{\partial u/\partial t}\right)\cdot\frac{d x}{d \theta}$, $\forall \theta$
+\end{enumerate}
+\end{theorem}
+
+When does the converse hold? (1) does $t$ always exist? -- ``add a uniform boundedness assumption on MRS'' (2) local SOC doesn't imply global SOC -- ``add $SC_{+}$''
+
+\begin{theorem}
+Suppose $SC_{+}$ and uniformly bounded MRS.
+
+$f(\theta)=\left(x(\theta),t(\theta)\right)$ is IC, if and only if 
+\begin{enumerate}
+    \item $\frac{d x}{d \theta}\geq 0$, $\forall \theta$\\
+    \item $\frac{d t}{d \theta}=-\left(\frac{d u/d x}{d u/d t}\right)\cdot\frac{d x}{d \theta}$, $\forall \theta$
+\end{enumerate}
+\end{theorem}
+
+HW: prove Theorem 2 by contradiction.
+
+Application: quadratic scoring rule.
+
+\textbf{3. Optimal mechanism}
+
+Consider a quasi-linear setting:
+\begin{itemize}
+\item Principal: $u_{0}(x,t)=v_{0}(x)-t$
+\item Agent: $u_{1}(x,t|\theta)=v_{1}(x|\theta)+t$
+\item $\frac{\partial v_{0}}{\partial x}\geq 0$, $\frac{\partial v_{1}}{\partial x}\geq 0$; $\frac{\partial v_{1}}{\partial \theta}>0$; $\frac{\partial^{2} v_{0}}{\partial x^{2}}\leq 0$, $\frac{\partial^{2} v_{1}}{\partial x^{2}}\leq 0$
+\item MRS: $\frac{\partial v_{1}}{\partial x}$; $SC_{+}$: $\frac{\partial^{2} v_{1}}{\partial x \partial \theta}>0$
+\end{itemize}
+
+%\newpage
+
+\begin{align}
+    \max_{x(\cdot),t(\cdot)} \quad v_{0}(x(\theta))-t(\theta)\quad \text{s.t. [IR] } v_{1}(x(\theta)|\theta)+t(\theta)\geq 0,~ \forall \theta \tag{First-best}
+\end{align}
+\begin{itemize}
+    \item IR will be binding at every $\theta$.
+    \item $x\in \arg \max_{x(\cdot)} \left\{ v_{0}(x(\theta))+ v_{1}(x(\theta)|\theta)\right\}$, so $x$ is P.O.
+    \item $x$ is not IC (agent has incentive to lie downwards):
+\end{itemize}
+
+\begin{align*}
+    &u_{1}(x(\hat{\theta}),t(\hat{\theta})|\theta)=v_{1}(x(\hat{\theta})|\theta)\underbrace{-v_{1}(x(\hat{\theta})|\hat{\theta})}_{=t(\hat{\theta}) ~\text{(binding IR)}}\\
+    [\hat{\theta}] \quad &\frac{\partial v_{1}(x(\hat{\theta})|\theta)}{\partial x}\frac{d x(\hat{\theta})}{d \hat{\theta}}-\frac{\partial v_{1}(x(\hat{\theta})|\hat{\theta})}{\partial x}\frac{d x(\hat{\theta})}{d \hat{\theta}}-\frac{\partial v_{1}(x(\hat{\theta})|\hat{\theta})}{\partial \theta}=0\\
+    \iff \quad &\underbrace{\left[\frac{\partial v_{1}(x(\hat{\theta})|\theta)}{\partial x}-\frac{\partial v_{1}(x(\hat{\theta})|\hat{\theta})}{\partial x}\right]}_{\geq 0}\frac{d x(\hat{\theta})}{d \hat{\theta}}=\frac{\partial v_{1}(x(\hat{\theta})|\hat{\theta})}{\partial \theta}
+    \implies \quad \text{By } SC_{+}, ~\theta \geq \hat{\theta}
+\end{align*}
+HW: verify that $d x(\hat{\theta})/d \hat{\theta}\geq 0$.
+
+\begin{align}
+    \max_{x(\cdot),t(\cdot)} \quad \int_{\underset{\bar{}}{\theta}}^{\hat{\theta}} \left[v_{0}(x(\theta))-t(\theta)\right] g(\theta) d\theta \quad \text{s.t. [IR] } &v_{1}(x(\theta)|\theta)+t(\theta)\geq 0,~ \forall \theta \tag{Second-best} \\ \text{[IC] }&v_{1}(x(\theta)|\theta)+t(\theta)\geq v_{1}(x(\hat{\theta})|\theta)+t(\hat{\theta}),~ \forall \theta, \hat{\theta} \notag
+\end{align}
+
+
+
+\begin{itemize}
+    \item By Theorem 2, IC means that for every $\theta$, $x'(\theta)>0$ and $t(\theta)=\int_{\underset{\bar{}}{\theta}}^{\theta} \frac{\partial v_{1}(\tau|\tau)}{\partial x} d \tau-v_{1}(x(\theta)|\theta)+c$.
+    \begin{align*}
+    \left(\frac{d u(\theta)}{d \theta}=\frac{\partial v_{1}(x(\theta)|\theta)}{\partial \theta} \implies u(\theta)=\int_{\underset{\bar{}}{\theta}}^{\theta} \frac{\partial v_{1}(x(\tau)|\tau)}{\partial \theta} d \tau +c \right)
+    \end{align*}
+    \item If $\frac{\partial v_{1}}{\partial \theta}>0$, then IR for $\underset{\bar{}}{\theta}$ implies IR for every $\theta$. (because $u(\theta|\theta)$ is increasing in $\theta$)
+\end{itemize}
+
+\begin{align}
+    \max_{x(\cdot),t(\cdot)} \quad \int_{\underset{\bar{}}{\theta}}^{\hat{\theta}} \left[v_{0}(x(\theta))+v_{1}(x(\theta))-\int_{\underset{\bar{}}{\theta}}^{\theta} \frac{\partial v_{1}(x(\tau)|\tau)}{\partial x} d \tau-0\right] g(\theta) d\theta \quad \text{s.t. } x'(\theta)>0 \notag\\
+     \max_{x(\cdot),t(\cdot)} \quad \int_{\underset{\bar{}}{\theta}}^{\hat{\theta}} \left[v_{0}(x(\theta))+v_{1}(x(\theta))-\frac{\partial v_{1}}{\partial \theta} \frac{1-G(\theta)}{g(\theta)}-0\right] g(\theta) d\theta \quad \text{s.t. } x'(\theta)>0 \notag
+\end{align}
+
+We will ignore the constraint $x'(\theta)>0$ for now and check later.
+
+\begin{align*}
+\forall \theta: [x] \quad \frac{\partial v_{0}}{\partial x} + \frac{\partial v_{1}}{\partial x} = \underbrace{\frac{1-G(\theta)}{g(\theta)} \frac{\partial^{2} v_{0}}{\partial \theta^{2}}}_{\geq 0}
+\end{align*}
+
+\begin{itemize}
+    \item $\bar{\theta}$: No distortion at the top.
+    \item $\underset{\bar{}}{\theta}$: IR binds. 
+    \item Other $\theta$: IC binds $\implies$ $u_{1}(\theta)>0$ $\implies$ IR has slack. 
+\end{itemize}
+
+Applications: Regulating a firm.
+
+\end{document} 

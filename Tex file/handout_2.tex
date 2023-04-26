@@ -1,0 +1,142 @@
+% This sample document was created by P.J. Healy (healy.52@osu.edu) for educational purposes. You may use this as a template for your own documents as you wish.
+
+% Lines that start with a percent sign are just comments - they won't be processed or show up in the final output. If you actually want a percent sign to show up, use \% instead, like ``I got 100\%!''
+
+% \documentclass says what type of document we're making and gives some basic options (options appear in square brackets. Here, our document is like an article (as opposed to a book, report, PhD thesis, etc.), we want 11-point font, and equation numbers on the left (leqno).
+\documentclass[11pt,leqno]{article}
+
+% These are the following packages we want LaTeX to load, since we might use them. I group them by similarity.
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{color,graphicx}
+\usepackage{fullpage,setspace}
+\usepackage[colorlinks=true,urlcolor=darkgray,bookmarks=false]{hyperref}
+
+% First we tell LaTeX that we want to create a numbered "theorem-like" environment whose label is "Theorem X" and whose numbering will be handled by an internal counter named "theorem".
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+% The 'length variable' \parindent says how far to indent each paragraph. I want to set that length variable to zero:
+\setlength{\parindent}{0mm}
+
+% At OSU, you might use scarlet and gray colors for things, so here they are. Note: this requires the color package to be loaded. If you don't use this (and I don't below), you might as well comment it out or delete it.
+\definecolor{scarlet}{cmyk}{0,1.00,0.65,0.15}
+\definecolor{gray}{cmyk}{0.06,0,0,0.34}
+
+\begin{document}
+
+
+% First, move up from the normal starting point on the page by 20 millimeters so the table appears in the top margins
+\vspace*{-20mm}
+
+% Here's the actual table. We start with a `tabular' environment with 3 columns. The column alignments are left, center, and right, respectively, so the command option is {lcr}. Within the table, columns are delimited by & and rows by \\
+% Note that LaTeX ignore consecutive spaces, including tabs, so you can use tabs to make your table look reasonable here.
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcr}
+Econ 8714     & \hfill    &         Professor: P.J. Healy          \\
+Microeconomic Theory 2B  &           &   TA: Han Wang    
+\end{tabular*}
+
+% Finally, let's put a big `title' in the center of the page, after we `skip' down a bit of space.
+\bigskip
+\begin{center}
+{\Large 03/10/2023 Recitation \#2 Handout}
+\end{center}
+
+% Skip some more space and then start working
+\bigskip
+
+
+\textbf{1. Public Goods}
+
+\textbf{1.0. Setting:}
+\begin{itemize}
+    \item The set of agents $N=\{1,2,\ldots,n\}$.
+    \item Public good consumption $y$
+    \item Private good consumption $\textbf{x}=(x_{1},\ldots,x_{n})$
+    \item Agent $i$'s utility $u_{i}(x_{i},y)=v_{i}(y)+x$ (assume $v_{i}^{\prime\prime}\leq 0$)
+    \item The cost of producing public good $c(y)$   (assume $c^{\prime}>0$, $c^{\prime\prime}\geq 0$)
+\end{itemize}
+
+\textbf{1.1. Pareto optimal level of public good}
+
+Pareto optimality (+ interior solution) $\implies$ Samuelson condition $\sum_{i} v_{i}^{\prime}(y)=c^{\prime}(y)$.
+
+\textbf{1.2. Private provision of public good}
+
+Consider case where public good provided by means of private purchases by consumers. 
+
+A Walrasian equilibrium is a price vector $(p^{*},1)$\footnote{WLOG, we can normalize the price for the private good to be $1$.} and an allocation $(y^{*},\textbf{x}^{*})$:
+\begin{enumerate}
+    \item Consumers optimize: 
+    
+    $y_i^{*} \in \underset{y_i \geq 0}{\operatorname{argmax}} ~v_i\left(y_i+\sum_{j \neq i} y_j\right)-p^* y_i+\theta_{i} \Pi_{0}(y_{0}^{*},p^{*})$ $\implies$ $v_{i}^{\prime}\left(y^* _i+\sum_{j \neq i} y^* _j\right)\leq p^{*}$
+    \item Firm optimizes: 
+    
+    $y_0^{*} \in \underset{y_0 \geq 0}{\operatorname{argmax}} ~\Pi_{0}(y_{0},p^{*}):=p^{*} y_0 -c(y_0)$ $\implies$ $p^{*}\leq c^{\prime}(y_{0}^{*})$
+    \item Market clears: $y_0^{*}=\sum_{i} y_i^{*}$ (and $x_{i}^{*}=\omega_{i}-p^* y^{*}_i+\theta_{i} \Pi_{0}(y_{0}^{*},p^{*})$, $\forall i$)
+\end{enumerate}
+
+To sum up, $v_{i}^{\prime}\left(y^*\right)\leq p^{*}$, $\forall i$. Draw a graph to illustrate the free-rider issue.
+
+\textbf{1.3. Internalizing the externality}
+
+Consider case where every consumer reports the total amount of the public good she will consume.
+
+A Lindahl equilibrium is a price vector $(\textbf{p}^{*},1)$ such that $\textbf{p}^{*}=(p^* _1,p^* _2,\ldots,p^* _n)$ and an allocation $(y^{*},\textbf{x}^{*})$:
+
+\begin{enumerate}
+    \item Consumers optimize: 
+    
+    $y_i^{*} \in \underset{y_i \geq 0}{\operatorname{argmax}} ~v_i\left(y_i\right)-p_{i}^* y_i+\theta_{i} \Pi_{0}(y_{0}^{*},\textbf{p}^{*})$ $\implies$ $v_{i}^{\prime}\left(y^* _i\right) \leq p_i ^{*}$
+    \item Firm optimizes: 
+    
+    $y_0^{*} \in \underset{y_0 \geq 0}{\operatorname{argmax}} ~\Pi_{0}(y_{0},\textbf{p}^{*}):=\sum_{i} p_{i}^{*} y_0 -c(y_0)$ $\implies$ $\sum_{i} p_{i}^{*} \leq c^{\prime}(y_{0}^{*})$
+    \item Market clears: $y_0 ^{*}=y_1 ^{*}=\cdots=y_n ^{*}$ (and $x_{i}^{*}=\omega_{i}-p_{i}^* y^{*}_i+\theta_{i} \Pi_{0}(y_{0}^{*},\textbf{p}^{*})$, $\forall i$)
+\end{enumerate}
+To sum up, with interior solution, $\sum_{i} v_{i}^{\prime}\left(y^*\right)= c^{\prime}(y^{*})$. [Nice outcome: P.O. \& IR] Draw a graph.
+
+\newpage
+\textbf{2. Social Choice}
+
+\textbf{2.0. Definitions}
+
+\begin{example}
+Two teaching assistants decide the color of printing papers for the midterm exam.
+\end{example}
+
+\begin{itemize}
+    \item SWF vs SCF/SCC
+    \item Axioms on SWF: Paretian, IIA
+    \item Axioms on SCF: Weak Paretian, monotonicity
+    \item dictatorial
+\end{itemize}
+
+\textbf{2.1. Arrow's impossibility theorem}
+
+We've proved Muller-Satterthwaite theorem (in terms of SCF) during the lecture. Refer to Reny (2000) \textit{Arrow’s Theorem and the Gibbard-Satterthwaite Theorem: A Unified Approach}.
+
+Key assumptions:
+
+URIP3: U(niversal domain) - R(ational) - I(IA) - P(aretian) - 3 (alternatives) 
+
+\begin{itemize}
+    \item U: think about majority rule under single-peaked preferences
+    \item R: think about Condorcet cycles
+    \item I: think about Borda count
+    \item P: think about constant SCF
+    \item 3: think about majority rule with $|X|=2$
+\end{itemize}
+
+\textbf{3. Exercises}
+\begin{enumerate}
+    \item (HW) Consider the problem of public goods. Prove that at the Walrasian equilibrium, the only contributor is the agent with highest $v_{j}^{\prime}(y^{*})$.
+    \item (HW) Check that in the Kolm triangle, if $p_{1}+p_{2}=1$, then price hyperplanes coincide.
+    \item (HW) Consider the domain of single-peaked preferences and let $F$ be the SWF under pairwise majority voting. Is $F$ transitive? (What happens if n is odd/even?) Could $F$ have cycles ``below the top''?
+    \item (HW) How to construct from $F$ (SWF) to $f$ (SCF) and to $F^{\prime}$ (SWF)?
+    Is $F$ the same as $F^{\prime}$?
+\end{enumerate}
+
+
+\end{document} 
